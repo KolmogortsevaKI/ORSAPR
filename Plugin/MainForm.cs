@@ -53,7 +53,16 @@ namespace Plugin
         /// </summary>
         private void Build_Click(object sender, EventArgs e)
         {
-            if ((string)housingBox.SelectedItem == "Rectangle")
+            if ((string)housingBox.SelectedItem == "Rectangle" && lengthPerchBox.BackColor == Color.Bisque || diameterPerchBox.BackColor == Color.Bisque)
+            {
+                HouseParameters houseParameters = new HouseParameters(int.Parse(heightBox.Text),
+                  int.Parse(hallowBox.Text), Convert.ToInt32(0), Convert.ToInt32(0),
+                  int.Parse(depthBox.Text), int.Parse(widthBox.Text), int.Parse(fastenersBox.Text));
+                kompasConnector = new KompasConnector(houseParameters);
+                HouseBuilder housebuilder = new HouseBuilder();
+                housebuilder.Build(kompasConnector.iPart, kompasConnector.kompas, houseParameters);
+            }
+            else if ((string)housingBox.SelectedItem == "Rectangle" && lengthPerchBox.BackColor == Color.LightGreen && diameterPerchBox.BackColor == Color.LightGreen)
             {
                 HouseParameters houseParameters = new HouseParameters(int.Parse(heightBox.Text),
                   int.Parse(hallowBox.Text), int.Parse(lengthPerchBox.Text), int.Parse(diameterPerchBox.Text),
@@ -89,7 +98,7 @@ namespace Plugin
         }
 
         /// <summary>
-        /// Обработчико события при нажатии на текстовое поле
+        /// Обработчик события при нажатии на текстовое поле
         /// </summary>
         private void TextBox_TextChanged(object sender, EventArgs e)
         {

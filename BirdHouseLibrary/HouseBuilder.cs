@@ -10,6 +10,8 @@ namespace BirdHouseLibrary
         /// Интерфейс компонента
         /// </summary>
         public ksPart iPart;
+        /// Переменная смещения
+        private int bias = 10;
 
         /// <summary>
         /// Построение прямоугольного скворечника
@@ -27,7 +29,7 @@ namespace BirdHouseLibrary
         /// <summary>
         /// Построение прямоугольного корпуса скворечника
         /// </summary>
-        public void CreateMain(ksPart iPart, KompasObject kompas, HouseParameters houseParameters)
+        private void CreateMain(ksPart iPart, KompasObject kompas, HouseParameters houseParameters)
         {
             int thickness = houseParameters.Depth;
             ksEntity iSketch;
@@ -39,8 +41,8 @@ namespace BirdHouseLibrary
             // Построение прямоугольника (x1,y1, x2,y2, style)
             ksRectangleParam part1 = (ksRectangleParam)kompas.GetParamStruct((short)StructType2DEnum.ko_RectangleParam);
             part1.ang = 0; //Угол ?
-            part1.x = 10;
-            part1.y = 10;
+            part1.x = bias;
+            part1.y = bias;
             part1.width = houseParameters.Width;
             part1.height = houseParameters.Height;
             part1.style = 1; // При нуле не видно деталь
@@ -55,7 +57,7 @@ namespace BirdHouseLibrary
         /// <summary>
         /// Построение крепежа на задней стенке скворечника
         /// </summary>
-        public void CreateFastener(ksPart iPart, KompasObject kompas, HouseParameters houseParameters)
+        private void CreateFastener(ksPart iPart, KompasObject kompas, HouseParameters houseParameters)
         {
             //Толщина выдавливания крепежа
             int thickness = 30;
@@ -69,8 +71,8 @@ namespace BirdHouseLibrary
             ksDocument2D iDocument2D = (ksDocument2D)iDefinitionSketch.BeginEdit();
             ksRectangleParam part2 = (ksRectangleParam)kompas.GetParamStruct((short)StructType2DEnum.ko_RectangleParam);
             part2.ang = 0; //Угол 
-            part2.x = (houseParameters.Width) / 2;
-            part2.y = 10 + houseParameters.Height;
+            part2.x = ((houseParameters.Width / 2) - (houseParameters.WidthFasteners / 2) + bias);
+            part2.y = bias + houseParameters.Height;
             part2.width = houseParameters.WidthFasteners;
             //Высота крепежа
             part2.height = 150;
@@ -86,10 +88,10 @@ namespace BirdHouseLibrary
         /// <summary>
         /// Ппостроение крыши скворечника
         /// </summary>
-        public void CreateRoof(ksPart iPart, KompasObject kompas, HouseParameters houseParameters)
+        private void CreateRoof(ksPart iPart, KompasObject kompas, HouseParameters houseParameters)
         {
             //Смещение по оси Z 
-            int offset = -10;
+            int offset = -bias;
             //Толщина выдавливания крыши
             int thickness = 5;
             ksEntity iSketch;
@@ -105,9 +107,9 @@ namespace BirdHouseLibrary
             ksRectangleParam part3 = (ksRectangleParam)kompas.GetParamStruct((short)StructType2DEnum.ko_RectangleParam);
             part3.ang = 0; //Угол наклона
             part3.x = 0;
-            part3.y = 10;
+            part3.y = bias;
             part3.width = houseParameters.Width + 20;//Крыша выходит за границы корпуса на 20 мм
-            part3.height = thickness; 
+            part3.height = thickness;
             part3.style = 1; // При нуле не видно деталь
             iDocument2D.ksRectangle(part3);
 
@@ -120,7 +122,7 @@ namespace BirdHouseLibrary
         /// <summary>
         /// Рразмещение дупла
         /// </summary>
-        public void CreateHollow(ksPart iPart, KompasObject kompas, HouseParameters houseParameters)
+        private void CreateHollow(ksPart iPart, KompasObject kompas, HouseParameters houseParameters)
         {
 
             // Смещение по оси Z
@@ -135,7 +137,7 @@ namespace BirdHouseLibrary
 
             // Интерфейс для рисования = на скетче
             ksDocument2D iDocument2D = (ksDocument2D)iDefinitionSketch.BeginEdit();
-            iDocument2D.ksCircle(10 + (houseParameters.Width / 2), ((houseParameters.Height) - (houseParameters.HallowHeight)), radius, 1);
+            iDocument2D.ksCircle(bias + (houseParameters.Width / 2), ((houseParameters.Height) - (houseParameters.HallowHeight)), radius, 1);
 
             // Закончить редактирование эскиза
             iDefinitionSketch.EndEdit();
@@ -143,9 +145,9 @@ namespace BirdHouseLibrary
             // Вырезание выдавливанием
             ksEntity entityCutExtr = (ksEntity)iPart.NewEntity((short)Obj3dType.o3d_cutExtrusion);
             ksCutExtrusionDefinition cutExtrDef = (ksCutExtrusionDefinition)entityCutExtr.GetDefinition();
-            cutExtrDef.SetSketch(iSketch);   
+            cutExtrDef.SetSketch(iSketch);
             cutExtrDef.directionType = (short)Direction_Type.dtNormal; //прямое направление
-            cutExtrDef.SetSideParam(true, (short)End_Type.etBlind, 20, 0, false);
+            cutExtrDef.SetSideParam(true, (short)End_Type.etBlind, 5, 0, false);
             cutExtrDef.SetThinParam(false, 0, 0, 0);
             entityCutExtr.Create(); // Операция вырезание выдавливанием
         }
@@ -153,7 +155,7 @@ namespace BirdHouseLibrary
         /// <summary>
         /// Построение для жёрдочки
         /// </summary>
-        public void CreatePerch(ksPart iPart, KompasObject kompas, HouseParameters houseParameters)
+        private void CreatePerch(ksPart iPart, KompasObject kompas, HouseParameters houseParameters)
         {
             // Смещение по оси Z
             int offset = houseParameters.Depth;
@@ -168,7 +170,7 @@ namespace BirdHouseLibrary
 
             // Интерфейс для рисования = на скетче
             ksDocument2D iDocument2D = (ksDocument2D)iDefinitionSketch.BeginEdit();
-            iDocument2D.ksCircle(10 + (houseParameters.Width / 2),
+            iDocument2D.ksCircle(bias + (houseParameters.Width / 2),
                 ((houseParameters.Height) - (houseParameters.HallowHeight) + 30), radius, 1);
 
             // Закончить редактировние эскиза
@@ -265,7 +267,7 @@ namespace BirdHouseLibrary
         }
         //Радиус цилиндрического корпуса 
         private int radiusCylinder = 40;
-        public void CreateMainCylinder(ksPart iPart, KompasObject kompas, HouseParameters houseParameters)
+        private void CreateMainCylinder(ksPart iPart, KompasObject kompas, HouseParameters houseParameters)
         {
             // Смещение по оси Z
             int offset = 0;
@@ -278,7 +280,7 @@ namespace BirdHouseLibrary
 
             // Интерфейс для рисования = на скетче
             ksDocument2D iDocument2D = (ksDocument2D)iDefinitionSketch.BeginEdit();
-            iDocument2D.ksCircle(10, 10, radiusCylinder, 1);
+            iDocument2D.ksCircle(bias, bias, radiusCylinder, 1);
 
             // Закончить редактирование эскиза
             iDefinitionSketch.EndEdit();
@@ -319,7 +321,7 @@ namespace BirdHouseLibrary
         /// <summary>
         /// Создание крыши для цилиндрического корпуса
         /// </summary>
-        public void CreateRoofCylinder(ksPart iPart, KompasObject kompas, HouseParameters houseParameters)
+        private void CreateRoofCylinder(ksPart iPart, KompasObject kompas, HouseParameters houseParameters)
         {
             int offset = -30;
             int thickness = 5;
@@ -337,7 +339,7 @@ namespace BirdHouseLibrary
             part3.x = -35;
             part3.y = -(houseParameters.Height) / 2 - thickness;
             part3.width = 90;
-            part3.height = thickness; 
+            part3.height = thickness;
             part3.style = 1; // При нуле не видно деталь
             iDocument2D.ksRectangle(part3);
 
@@ -350,7 +352,7 @@ namespace BirdHouseLibrary
         /// <summary>
         /// Размещение дупла цилиндрического корпуса
         /// </summary>
-        public void CreateHollowCylinder(ksPart iPart, KompasObject kompas, HouseParameters houseParameters)
+        private void CreateHollowCylinder(ksPart iPart, KompasObject kompas, HouseParameters houseParameters)
         {
             int depth = 20;
             int radius = 12;
@@ -380,7 +382,7 @@ namespace BirdHouseLibrary
         /// <summary>
         /// Построение жёрдочки цилиндрического корпуса
         /// </summary>
-        public void CreatePerchCylinder(ksPart iPart, KompasObject kompas, HouseParameters houseParameters)
+        private void CreatePerchCylinder(ksPart iPart, KompasObject kompas, HouseParameters houseParameters)
         {
             // Смещение по оси Z
             int offset = radiusCylinder + houseParameters.LengthPerch / 4;
