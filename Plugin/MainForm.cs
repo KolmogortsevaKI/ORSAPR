@@ -47,15 +47,15 @@ namespace Plugin
         /// </summary>
         private void Build_Click(object sender, EventArgs e)
         {
-            string ListDate = DateTime.Now.ToString();
-            for (int i = 0; i < 50; i++)
-            {
-                if (i == 1 || i == 5 || i == 10 || i == 15 || i == 20 || i == 25 || i == 30
-                    || i == 35 || i == 40 || i == 45 || i == 50)
-                {
-                    ListDate = ListDate + "....." + DateTime.Now.ToString();
-                    MessageBox.Show(ListDate);
-                }
+            //string ListDate = DateTime.Now.ToString();
+            //for (int i = 0; i < 50; i++)
+            //{
+            //    if (i == 1 || i == 5 || i == 10 || i == 15 || i == 20 || i == 25 || i == 30
+            //        || i == 35 || i == 40 || i == 45 || i == 50)
+            //    {
+            //        ListDate = ListDate + "....." + DateTime.Now.ToString();
+            //        MessageBox.Show(ListDate);
+            //    }
                 if (diameterPerchBox.Text == "" && (string)housingBox.SelectedItem == "Rectangle")
                 {
                     HouseParameters houseParameters = new HouseParameters(int.Parse(heightBox.Text),
@@ -90,7 +90,7 @@ namespace Plugin
                     HouseBuilder housebuilder = new HouseBuilder();
                     housebuilder.BuildCylinder(kompasConnector.iPart, kompasConnector.kompas, houseParameters);
                 }
-            }
+            //}
         }
 
         /// <summary>
@@ -209,7 +209,7 @@ namespace Plugin
             else 
             {
                 TextBoxList[5].Enabled = false;
-                for (i = 0; i <5; i++)
+                for (i = 0; i <6; i++)
                 {
                     if ((TextBoxList[i].Text == "") || int.Parse(TextBoxList[i].Text) < minValuesList[i] ||
                             int.Parse(TextBoxList[i].Text) > maxValuesList[i] || TextBoxList[i].Text.Length > 3)
@@ -224,9 +224,9 @@ namespace Plugin
                         errorLabel.Visible = false;
                     }
                 }
-                if (i == 4)
+                if (i == 5)
                 {
-                    if ((int.Parse(hallowBox.Text)) > ((int.Parse(heightBox.Text)) - 26))
+                    if ((int.Parse(hallowBox.Text)) > ((int.Parse(heightBox.Text)) - 26) && TextBoxList[6].Text != "")
                     {
                         hallowBox.BackColor = System.Drawing.Color.Pink;
                         errorLabel.Visible = true;
