@@ -173,7 +173,7 @@ namespace Plugin
             int i = 0;
             if (TextBoxList[6].Text != "")
             {
-                for (i = 0; i <7; i++)
+                for (i = 0; i <6; i++)
                 {
                     if ((TextBoxList[i].Text == "") || int.Parse(TextBoxList[i].Text) < minValuesList[i] ||
                             int.Parse(TextBoxList[i].Text) > maxValuesList[i]|| TextBoxList[i].Text.Length > 3 )
