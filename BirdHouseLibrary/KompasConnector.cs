@@ -5,52 +5,78 @@ using Kompas6Constants3D;
 namespace BirdHouseLibrary
 {
     /// <summary>
-    /// Класс для подключения к САПР КОМПАС 3D
+    /// Класс для подключения к САПР КОМПАС-3D.
     /// </summary>
     public class KompasConnector
     {
-        // c помощью этого обьекта мы можем 
-        // выбрать определенное окно приложения компас
-        public KompasObject kompas = null;
+        /// <summary>
+        /// Объект Компас.
+        /// </summary>
+        private KompasObject _kompas = null;
 
-        // с помощью этого обьекта мы можем
-        // создать 3Д документ для построения предметов
+        /// <summary>
+        /// Документ компас3D.
+        /// </summary>
         private ksDocument3D _doc3D = null;
 
-        // c помощью этого обьекта мы можем
-        // взять управление конкретно над интерфейсом программы
-        public ksPart iPart = null;
+        /// <summary>
+        /// Интерфейс компонента.
+        /// </summary>
+        private ksPart _iPart = null;
 
-        // public KompasConnector(HiveParams hiveParams)
+        /// <summary>
+        /// Соединение с САПР и передача параметров.
+        /// </summary>
         public KompasConnector(HouseParameters houseParameters)
         {
             TakeKompas();
         }
 
-        // Кнопка запустить компас, Береме контроль _kompas, и интерфейсом
+        /// <summary>
+        /// Свойства _kompas.
+        /// </summary>
+        public KompasObject kompas
+        {
+            get
+            {
+                return _kompas;
+            }
+            set
+            {
+                _kompas = value;
+            }
+        }
+        /// <summary>
+        /// Свойства _iPart.
+        /// </summary>
+        public ksPart iPart
+        {
+            get
+            {
+                return _iPart;
+            }
+            set
+            {
+                _iPart = value;
+            }
+        }
+
+        /// <summary>
+        ///Открыть деталь в Компасе.
+        /// </summary>
         public void TakeKompas()
         {
-            // если окно компаса не включено
-            // создать обьект компаса (т.е. обьект будет в процессе но не виден)
-            if (kompas == null)
+            if (_kompas == null)
             {
                 Type t = Type.GetTypeFromProgID("KOMPAS.Application.5");
-                kompas = (KompasObject)Activator.CreateInstance(t);
-            }
+                _kompas = (KompasObject)Activator.CreateInstance(t);
+            }         
+            _kompas.Visible = true;
+            _kompas.ActivateControllerAPI();
 
-            // показать компас          
-            kompas.Visible = true;
-            kompas.ActivateControllerAPI();
-
-
-            // присвоить управление документами _doc3D
-            _doc3D = (ksDocument3D)kompas.Document3D();
-
-            // создать документ
-            _doc3D.Create(false/*invisible*/, true);
-
-            // получить интерфейс детали !!
-            iPart = (ksPart)_doc3D.GetPart((short)Part_Type.pTop_Part);
+            _doc3D = (ksDocument3D)_kompas.Document3D();
+            _doc3D.Create(false, true);
+            _iPart = (ksPart)_doc3D.GetPart((short)Part_Type.pTop_Part);
         }
     }
 }

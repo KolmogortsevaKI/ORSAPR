@@ -16,11 +16,11 @@ namespace BirdHouseLibrary
         /// </summary>
         private int _hallowHeight;
         /// <summary>
-        /// Длина жердочки.
+        /// Длина жёрдочки.
         /// </summary>
         private int _lengthPerch;
         /// <summary>
-        /// Диаметр жердочки.
+        /// Диаметр жёрдочки.
         /// </summary>
         private int _diameterPerch;
         /// <summary>
@@ -37,7 +37,21 @@ namespace BirdHouseLibrary
         private int _widthFasteners;
 
         /// <summary>
-        /// Создает экземпляр класса HouseParameters для прямоугольного корпуса
+        /// Проверка вхождения в диапазон минимально и максимально допустимых значений.
+        /// </summary>
+        private int SetParams(int min, int max, int value)
+        {
+            if (value < min || value > max)
+            {
+                throw new ArgumentException("Incorrect values ( " + value +
+                                            " ) it must be from" +
+                                            min + " to " + max);
+            }
+            return value;
+        }
+
+        /// <summary>
+        /// Создает экземпляр класса HouseParameters для прямоугольного корпуса.
         /// </summary>
         public HouseParameters(int height,
             int hallowHeight,
@@ -56,7 +70,7 @@ namespace BirdHouseLibrary
             WidthFasteners = widthFasteners;
         }
         /// <summary>
-        /// Создает экземпляр класса HouseParameters для цилиндррического корпуса
+        /// Создает экземпляр класса HouseParameters для цилиндррического корпуса.
         /// </summary>
         public HouseParameters(int height,
             int hallowHeight,
@@ -69,8 +83,9 @@ namespace BirdHouseLibrary
             LengthPerch = lengthPerch;
             DiameterPerch = diameterPerch;
         }
+
         /// <summary>
-        /// Возвращает и задаёт высоту скворечника от 250-500мм.
+        /// Возвращает и задаёт высоту скворечника.
         /// </summary>
         public int Height
         {
@@ -80,10 +95,8 @@ namespace BirdHouseLibrary
             }
             set
             {
-                if (value <= 500 && value >= 250)
-                    _height = value;
-                else
-                    throw new ArgumentException("Height has to be from 250 mm 500 mm.");
+                SetParams(250, 500, value);
+                _height = value;
             }
         }
 
@@ -98,17 +111,13 @@ namespace BirdHouseLibrary
             }
             set
             {
-                if (value < 25 || value > (_height - 25))
-                {
-                    throw new ArgumentException("");
-                }
-
+                SetParams(26, Height - 26, value);
                 _hallowHeight = value;
             }
         }
 
         /// <summary>
-        /// Возвращает и задаёт длину жердочки.
+        /// Возвращает и задаёт длину жёрдочки.
         /// </summary>
         public int LengthPerch
         {
@@ -118,17 +127,13 @@ namespace BirdHouseLibrary
             }
             set
             {
-                if (value == 0)
-                    _lengthPerch = 0;
-                else if (value <= 35 && value >= 25)
+                if (value == 0 || value <= 35 && value >= 25)
                     _lengthPerch = value;
-                else
-                    throw new ArgumentException("Length perch has to be more 25 mm and less than 35 mm.");
             }
         }
 
         /// <summary>
-        /// Возвращает и задаёт диаметр жердочки.
+        /// Возвращает и задаёт диаметр жёрдочки.
         /// </summary>
         public int DiameterPerch
         {
@@ -138,12 +143,8 @@ namespace BirdHouseLibrary
             }
             set
             {
-                if (LengthPerch == 0)
-                    _diameterPerch = 0;
-                else if (value <= 10 && value >= 5)
+                if (value == 0 || value <= 10 && value >= 5)
                     _diameterPerch = value;
-                else
-                    throw new ArgumentException("Diameter perch has to be more 5 mm and less 10 mm.");
             }
         }
 
@@ -158,10 +159,9 @@ namespace BirdHouseLibrary
             }
             set
             {
-                if (value <= 190 && value >= 120)
-                    _depth = value;
-                else
-                    throw new ArgumentException("Depth has to be more 120 mm and less 190 mm");
+                SetParams(120, 190, value);
+                _depth = value;
+
             }
         }
 
@@ -176,10 +176,8 @@ namespace BirdHouseLibrary
             }
             set
             {
-                if (value <= 190 && value >= 120)
-                    _width = value;
-                else
-                    throw new ArgumentException("Width has to be more 120 mm and less 190 mm.");
+                SetParams(120, 190, value);
+                _width = value;
             }
         }
 
@@ -194,10 +192,8 @@ namespace BirdHouseLibrary
             }
             set
             {
-                if (value <= 50 && value >= 30)
-                    _widthFasteners = value;
-                else
-                    throw new ArgumentException("Width fasteners has to be more 30 mm and less 50 mm.");
+                SetParams(30, 50, value);
+                _widthFasteners = value;
             }
         }
     }

@@ -43,7 +43,6 @@
 			this.widthBox = new System.Windows.Forms.TextBox();
 			this.fastenersBox = new System.Windows.Forms.TextBox();
 			this.Build = new System.Windows.Forms.Button();
-			this.cleanButton = new System.Windows.Forms.Button();
 			this.label15 = new System.Windows.Forms.Label();
 			this.label16 = new System.Windows.Forms.Label();
 			this.label17 = new System.Windows.Forms.Label();
@@ -55,6 +54,8 @@
 			this.AdditionalBox = new System.Windows.Forms.GroupBox();
 			this.housingBox = new System.Windows.Forms.ComboBox();
 			this.label8 = new System.Windows.Forms.Label();
+			this.cleanButton = new System.Windows.Forms.Button();
+			this.helpProvider1 = new System.Windows.Forms.HelpProvider();
 			this.AdditionalBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -124,8 +125,10 @@
 			// heightBox
 			// 
 			this.heightBox.ForeColor = System.Drawing.Color.Black;
+			this.helpProvider1.SetHelpString(this.heightBox, "Height has to be from 250 mm 500 mm");
 			this.heightBox.Location = new System.Drawing.Point(102, 52);
 			this.heightBox.Name = "heightBox";
+			this.helpProvider1.SetShowHelp(this.heightBox, true);
 			this.heightBox.Size = new System.Drawing.Size(79, 20);
 			this.heightBox.TabIndex = 2;
 			this.heightBox.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
@@ -134,8 +137,10 @@
 			// hallowBox
 			// 
 			this.hallowBox.ForeColor = System.Drawing.Color.Black;
+			this.helpProvider1.SetHelpString(this.hallowBox, "Hallow height depends on height. It has to be higher 25 mm and below on 26 mm");
 			this.hallowBox.Location = new System.Drawing.Point(102, 83);
 			this.hallowBox.Name = "hallowBox";
+			this.helpProvider1.SetShowHelp(this.hallowBox, true);
 			this.hallowBox.Size = new System.Drawing.Size(79, 20);
 			this.hallowBox.TabIndex = 3;
 			this.hallowBox.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
@@ -144,8 +149,10 @@
 			// lengthPerchBox
 			// 
 			this.lengthPerchBox.ForeColor = System.Drawing.Color.Black;
+			this.helpProvider1.SetHelpString(this.lengthPerchBox, "Length perch has to be more 25 mm and less than 35 mm");
 			this.lengthPerchBox.Location = new System.Drawing.Point(102, 111);
 			this.lengthPerchBox.Name = "lengthPerchBox";
+			this.helpProvider1.SetShowHelp(this.lengthPerchBox, true);
 			this.lengthPerchBox.Size = new System.Drawing.Size(79, 20);
 			this.lengthPerchBox.TabIndex = 4;
 			this.lengthPerchBox.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
@@ -154,8 +161,10 @@
 			// diameterPerchBox
 			// 
 			this.diameterPerchBox.ForeColor = System.Drawing.Color.Black;
+			this.helpProvider1.SetHelpString(this.diameterPerchBox, "Diameter perch has to be more 5 mm and less 10 mm");
 			this.diameterPerchBox.Location = new System.Drawing.Point(102, 140);
 			this.diameterPerchBox.Name = "diameterPerchBox";
+			this.helpProvider1.SetShowHelp(this.diameterPerchBox, true);
 			this.diameterPerchBox.Size = new System.Drawing.Size(79, 20);
 			this.diameterPerchBox.TabIndex = 5;
 			this.diameterPerchBox.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
@@ -164,8 +173,10 @@
 			// depthBox
 			// 
 			this.depthBox.ForeColor = System.Drawing.Color.Black;
+			this.helpProvider1.SetHelpString(this.depthBox, "Depth has to be more 120 mm and less 190 mm");
 			this.depthBox.Location = new System.Drawing.Point(92, 19);
 			this.depthBox.Name = "depthBox";
+			this.helpProvider1.SetShowHelp(this.depthBox, true);
 			this.depthBox.Size = new System.Drawing.Size(79, 20);
 			this.depthBox.TabIndex = 6;
 			this.depthBox.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
@@ -174,8 +185,10 @@
 			// widthBox
 			// 
 			this.widthBox.ForeColor = System.Drawing.Color.Black;
+			this.helpProvider1.SetHelpString(this.widthBox, "Width has to be more 120 mm and less 190 mm");
 			this.widthBox.Location = new System.Drawing.Point(92, 46);
 			this.widthBox.Name = "widthBox";
+			this.helpProvider1.SetShowHelp(this.widthBox, true);
 			this.widthBox.Size = new System.Drawing.Size(79, 20);
 			this.widthBox.TabIndex = 7;
 			this.widthBox.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
@@ -184,8 +197,10 @@
 			// fastenersBox
 			// 
 			this.fastenersBox.ForeColor = System.Drawing.Color.Black;
+			this.helpProvider1.SetHelpString(this.fastenersBox, "Width fasteners has to be more 30 mm and less 50 mm");
 			this.fastenersBox.Location = new System.Drawing.Point(92, 75);
 			this.fastenersBox.Name = "fastenersBox";
+			this.helpProvider1.SetShowHelp(this.fastenersBox, true);
 			this.fastenersBox.Size = new System.Drawing.Size(79, 20);
 			this.fastenersBox.TabIndex = 8;
 			this.fastenersBox.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
@@ -193,23 +208,15 @@
 			// 
 			// Build
 			// 
-			this.Build.Location = new System.Drawing.Point(184, 306);
+			this.helpProvider1.SetHelpString(this.Build, "Build bird house");
+			this.Build.Location = new System.Drawing.Point(201, 306);
 			this.Build.Name = "Build";
+			this.helpProvider1.SetShowHelp(this.Build, true);
 			this.Build.Size = new System.Drawing.Size(126, 23);
 			this.Build.TabIndex = 10;
 			this.Build.Text = "Build";
 			this.Build.UseVisualStyleBackColor = true;
 			this.Build.Click += new System.EventHandler(this.Build_Click);
-			// 
-			// cleanButton
-			// 
-			this.cleanButton.Location = new System.Drawing.Point(14, 306);
-			this.cleanButton.Name = "cleanButton";
-			this.cleanButton.Size = new System.Drawing.Size(126, 23);
-			this.cleanButton.TabIndex = 9;
-			this.cleanButton.Text = "Clean";
-			this.cleanButton.UseVisualStyleBackColor = true;
-			this.cleanButton.Click += new System.EventHandler(this.CleanButton_Click);
 			// 
 			// label15
 			// 
@@ -307,11 +314,13 @@
 			// 
 			this.housingBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.housingBox.FormattingEnabled = true;
+			this.helpProvider1.SetHelpString(this.housingBox, "Choose type of housing");
 			this.housingBox.Items.AddRange(new object[] {
-			"Rectangle",
-			"Сylinder"});
+            "Rectangle",
+            "Сylinder"});
 			this.housingBox.Location = new System.Drawing.Point(102, 25);
 			this.housingBox.Name = "housingBox";
+			this.helpProvider1.SetShowHelp(this.housingBox, true);
 			this.housingBox.Size = new System.Drawing.Size(79, 21);
 			this.housingBox.TabIndex = 1;
 			this.housingBox.SelectedIndexChanged += new System.EventHandler(this.HousingBox_SelectedIndexChanged);
@@ -325,12 +334,25 @@
 			this.label8.TabIndex = 33;
 			this.label8.Text = "Choose housing";
 			// 
+			// cleanButton
+			// 
+			this.helpProvider1.SetHelpString(this.cleanButton, "Clean first 4 fields");
+			this.cleanButton.Location = new System.Drawing.Point(10, 306);
+			this.cleanButton.Name = "cleanButton";
+			this.helpProvider1.SetShowHelp(this.cleanButton, true);
+			this.cleanButton.Size = new System.Drawing.Size(126, 23);
+			this.cleanButton.TabIndex = 34;
+			this.cleanButton.Text = "Clean";
+			this.cleanButton.UseVisualStyleBackColor = true;
+			this.cleanButton.Click += new System.EventHandler(this.CleanButton_Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoSize = true;
 			this.ClientSize = new System.Drawing.Size(333, 336);
+			this.Controls.Add(this.cleanButton);
 			this.Controls.Add(this.label8);
 			this.Controls.Add(this.housingBox);
 			this.Controls.Add(this.AdditionalBox);
@@ -339,7 +361,6 @@
 			this.Controls.Add(this.label17);
 			this.Controls.Add(this.label16);
 			this.Controls.Add(this.label15);
-			this.Controls.Add(this.cleanButton);
 			this.Controls.Add(this.Build);
 			this.Controls.Add(this.diameterPerchBox);
 			this.Controls.Add(this.lengthPerchBox);
@@ -350,7 +371,9 @@
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+			this.HelpButton = true;
 			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "MainForm";
 			this.Text = "BirdHouseBuilder";
 			this.AdditionalBox.ResumeLayout(false);
@@ -376,7 +399,6 @@
 		private System.Windows.Forms.TextBox widthBox;
 		private System.Windows.Forms.TextBox fastenersBox;
 		private System.Windows.Forms.Button Build;
-		private System.Windows.Forms.Button cleanButton;
 		private System.Windows.Forms.Label label15;
 		private System.Windows.Forms.Label label16;
 		private System.Windows.Forms.Label label17;
@@ -388,6 +410,8 @@
 		private System.Windows.Forms.GroupBox AdditionalBox;
 		private System.Windows.Forms.ComboBox housingBox;
 		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.Button cleanButton;
+		private System.Windows.Forms.HelpProvider helpProvider1;
 	}
 }
 
