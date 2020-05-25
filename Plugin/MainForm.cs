@@ -13,7 +13,7 @@ namespace Plugin
         /// Переменная для валидации параметров.
         /// </summary>
         private bool _init = true;
-
+        //private HouseParameters houseParameters;
         public MainForm()
         {
             InitializeComponent();
@@ -61,34 +61,34 @@ namespace Plugin
                     HouseParameters houseParameters = new HouseParameters(int.Parse(heightBox.Text),
                       int.Parse(hallowBox.Text), Convert.ToInt32(0), Convert.ToInt32(0),
                       int.Parse(depthBox.Text), int.Parse(widthBox.Text), int.Parse(fastenersBox.Text));
-                    kompasConnector = new KompasConnector(houseParameters);
-                    HouseBuilder housebuilder = new HouseBuilder();
-                    housebuilder.Build(kompasConnector.iPart, kompasConnector.kompas, houseParameters);
+                kompasConnector = new KompasConnector(houseParameters);
+                HouseBuilder housebuilder = new HouseBuilder();
+                housebuilder.Build(kompasConnector.iPart, kompasConnector.kompas, houseParameters);
                 }
                 else if (diameterPerchBox.Text != "" && (string)housingBox.SelectedItem == "Rectangle")
                 {
                     HouseParameters houseParameters = new HouseParameters(int.Parse(heightBox.Text),
                       int.Parse(hallowBox.Text), int.Parse(lengthPerchBox.Text), int.Parse(diameterPerchBox.Text),
                       int.Parse(depthBox.Text), int.Parse(widthBox.Text), int.Parse(fastenersBox.Text));
-                    kompasConnector = new KompasConnector(houseParameters);
-                    HouseBuilder housebuilder = new HouseBuilder();
-                    housebuilder.Build(kompasConnector.iPart, kompasConnector.kompas, houseParameters);
+                kompasConnector = new KompasConnector(houseParameters);
+                HouseBuilder housebuilder = new HouseBuilder();
+                housebuilder.Build(kompasConnector.iPart, kompasConnector.kompas, houseParameters);
                 }
                 else if (diameterPerchBox.Text != "")
                 {
                     HouseParameters houseParameters = new HouseParameters(int.Parse(heightBox.Text),
                       int.Parse(hallowBox.Text), int.Parse(lengthPerchBox.Text), int.Parse(diameterPerchBox.Text));
-                    kompasConnector = new KompasConnector(houseParameters);
-                    HouseBuilder housebuilder = new HouseBuilder();
-                    housebuilder.BuildCylinder(kompasConnector.iPart, kompasConnector.kompas, houseParameters);
+                kompasConnector = new KompasConnector(houseParameters);
+                HouseBuilder housebuilder = new HouseBuilder();
+                housebuilder.BuildCylinder(kompasConnector.iPart, kompasConnector.kompas, houseParameters);
                 }
                 else
                 {
                     HouseParameters houseParameters = new HouseParameters(int.Parse(heightBox.Text),
                       int.Parse(hallowBox.Text), Convert.ToInt32(0), Convert.ToInt32(0));
-                    kompasConnector = new KompasConnector(houseParameters);
-                    HouseBuilder housebuilder = new HouseBuilder();
-                    housebuilder.BuildCylinder(kompasConnector.iPart, kompasConnector.kompas, houseParameters);
+                kompasConnector = new KompasConnector(houseParameters);
+                HouseBuilder housebuilder = new HouseBuilder();
+                housebuilder.BuildCylinder(kompasConnector.iPart, kompasConnector.kompas, houseParameters);
                 }
             //}
         }
@@ -143,6 +143,24 @@ namespace Plugin
             }
         }
 
+        private bool Check_Value(List<TextBox> TextBoxList, int i,
+                        List<int> maxValuesList, List<int> minValuesList)
+        {
+            if ((TextBoxList[i].Text == "") || int.Parse(TextBoxList[i].Text) < minValuesList[i] ||
+           int.Parse(TextBoxList[i].Text) > maxValuesList[i] || TextBoxList[i].Text.Length > 3)
+            {
+                TextBoxList[i].BackColor = System.Drawing.Color.Pink;
+                errorLabel.Visible = true;
+                return false;
+            }
+            else
+            {
+                TextBoxList[i].BackColor = System.Drawing.Color.LightGreen;
+                errorLabel.Visible = false;
+            }
+            return true;
+        }
+
         /// <summary>
         /// Проверка на правильность введённых значений.
         /// </summary>
@@ -170,40 +188,18 @@ namespace Plugin
             List<int> maxValuesList = new List<int>();
             maxValuesList.AddRange(new int[] { 500, 474, 190, 190, 50, 35, 10 });
 
+            if (TextBoxList[0].Text != "" && int.Parse(TextBoxList[0].Text) > 26) 
+                maxValuesList[1] = int.Parse(TextBoxList[0].Text) - 26;
+
             int i = 0;
+
+            TextBoxList[5].Enabled = true;
             if (TextBoxList[6].Text != "")
             {
-                for (i = 0; i <6; i++)
+                for (i = 0; i<7; i++)
                 {
-                    if ((TextBoxList[i].Text == "") || int.Parse(TextBoxList[i].Text) < minValuesList[i] ||
-                            int.Parse(TextBoxList[i].Text) > maxValuesList[i]|| TextBoxList[i].Text.Length > 3 )
-                    {
-                        TextBoxList[i].BackColor = System.Drawing.Color.Pink;
-                        errorLabel.Visible = true;
+                    if (!Check_Value(TextBoxList, i, maxValuesList, minValuesList))
                         return false;
-                    }
-                    else
-                    {
-                        TextBoxList[i].BackColor = System.Drawing.Color.LightGreen;
-                        errorLabel.Visible = false;
-                        TextBoxList[5].Enabled = true;
-                    }
-                }
-                if (i == 6)
-                {
-                    if ((int.Parse(hallowBox.Text)) > ((int.Parse(heightBox.Text)) - 26))
-                    {
-                        hallowBox.BackColor = System.Drawing.Color.Pink;
-                        errorLabel.Visible=true;
-                        errorLabel.Text = "Hallow height depends on height. It has to be higher 25 mm and below on 26 mm";
-                        return false;
-                    }
-                    else
-                    {
-                        TextBoxList[i].BackColor = System.Drawing.Color.LightGreen;
-                        errorLabel.Visible = false;
-                        TextBoxList[5].Enabled = true;
-                    }
                 }
             }
             else 
@@ -211,35 +207,10 @@ namespace Plugin
                 TextBoxList[5].Enabled = false;
                 for (i = 0; i <6; i++)
                 {
-                    if ((TextBoxList[i].Text == "") || int.Parse(TextBoxList[i].Text) < minValuesList[i] ||
-                            int.Parse(TextBoxList[i].Text) > maxValuesList[i] || TextBoxList[i].Text.Length > 3)
-                    {
-                        TextBoxList[i].BackColor = System.Drawing.Color.Pink;
-                        errorLabel.Visible = true;
+                    if (!Check_Value(TextBoxList, i, maxValuesList, minValuesList)) 
                         return false;
-                    }
-                    else
-                    {
-                        TextBoxList[i].BackColor = System.Drawing.Color.LightGreen;
-                        errorLabel.Visible = false;
-                    }
                 }
-                if (i == 5)
-                {
-                    if ((int.Parse(hallowBox.Text)) > ((int.Parse(heightBox.Text)) - 26) && TextBoxList[6].Text != "")
-                    {
-                        hallowBox.BackColor = System.Drawing.Color.Pink;
-                        errorLabel.Visible = true;
-                        errorLabel.Text = "Hallow height depends on height. It has to be higher 25 mm and below on 26 mm";
-                        return false;
-                    }
-                    else
-                    {
-                        TextBoxList[i].BackColor = System.Drawing.Color.LightGreen;
-                        errorLabel.Visible = false;
-                    }
-                }
-            }     
+            }
             return true;
         }
     }

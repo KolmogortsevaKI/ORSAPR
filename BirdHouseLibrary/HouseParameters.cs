@@ -39,7 +39,7 @@ namespace BirdHouseLibrary
         /// <summary>
         /// Проверка вхождения в диапазон минимально и максимально допустимых значений.
         /// </summary>
-        private int SetParams(int min, int max, int value)
+        private bool SetParams(int min, int max, int value)
         {
             if (value < min || value > max)
             {
@@ -47,7 +47,7 @@ namespace BirdHouseLibrary
                                             " ) it must be from" +
                                             min + " to " + max);
             }
-            return value;
+            return true;
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace BirdHouseLibrary
             }
             set
             {
-                SetParams(250, 500, value);
+                if (SetParams(250, 500, value))
                 _height = value;
             }
         }
@@ -111,7 +111,7 @@ namespace BirdHouseLibrary
             }
             set
             {
-                SetParams(26, Height - 26, value);
+                if (SetParams(26, Height - 26, value))
                 _hallowHeight = value;
             }
         }
@@ -127,7 +127,7 @@ namespace BirdHouseLibrary
             }
             set
             {
-                if (value == 0 || value <= 35 && value >= 25)
+                if (value == 0 || SetParams(25, 35, value))
                     _lengthPerch = value;
             }
         }
@@ -143,7 +143,7 @@ namespace BirdHouseLibrary
             }
             set
             {
-                if (value == 0 || value <= 10 && value >= 5)
+                if (value == 0 || SetParams(5, 10, value))
                     _diameterPerch = value;
             }
         }
@@ -159,9 +159,8 @@ namespace BirdHouseLibrary
             }
             set
             {
-                SetParams(120, 190, value);
-                _depth = value;
-
+                if (SetParams(120, 190, value))
+                    _depth = value;
             }
         }
 
@@ -176,8 +175,8 @@ namespace BirdHouseLibrary
             }
             set
             {
-                SetParams(120, 190, value);
-                _width = value;
+                if (SetParams(120, 190, value))
+                    _width = value;
             }
         }
 
@@ -192,8 +191,8 @@ namespace BirdHouseLibrary
             }
             set
             {
-                SetParams(30, 50, value);
-                _widthFasteners = value;
+                if (SetParams(30, 50, value))
+                    _widthFasteners = value;
             }
         }
     }
