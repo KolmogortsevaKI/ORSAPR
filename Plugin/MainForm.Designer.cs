@@ -62,7 +62,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(13, 59);
+			this.label1.Location = new System.Drawing.Point(13, 63);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(38, 13);
 			this.label1.TabIndex = 1;
@@ -71,7 +71,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(13, 86);
+			this.label2.Location = new System.Drawing.Point(13, 90);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(71, 13);
 			this.label2.TabIndex = 2;
@@ -80,7 +80,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(13, 114);
+			this.label3.Location = new System.Drawing.Point(13, 152);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(70, 13);
 			this.label3.TabIndex = 3;
@@ -89,7 +89,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(13, 143);
+			this.label4.Location = new System.Drawing.Point(13, 121);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(79, 13);
 			this.label4.TabIndex = 4;
@@ -107,7 +107,7 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(3, 50);
+			this.label6.Location = new System.Drawing.Point(3, 51);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(35, 13);
 			this.label6.TabIndex = 6;
@@ -126,11 +126,11 @@
 			// 
 			this.heightBox.ForeColor = System.Drawing.Color.Black;
 			this.helpProvider1.SetHelpString(this.heightBox, "Height has to be from 250 mm 500 mm");
-			this.heightBox.Location = new System.Drawing.Point(102, 52);
+			this.heightBox.Location = new System.Drawing.Point(102, 56);
 			this.heightBox.Name = "heightBox";
 			this.helpProvider1.SetShowHelp(this.heightBox, true);
 			this.heightBox.Size = new System.Drawing.Size(79, 20);
-			this.heightBox.TabIndex = 2;
+			this.heightBox.TabIndex = 1;
 			this.heightBox.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
 			this.heightBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
 			// 
@@ -138,11 +138,11 @@
 			// 
 			this.hallowBox.ForeColor = System.Drawing.Color.Black;
 			this.helpProvider1.SetHelpString(this.hallowBox, "Hallow height depends on height. It has to be higher 25 mm and below on 26 mm");
-			this.hallowBox.Location = new System.Drawing.Point(102, 83);
+			this.hallowBox.Location = new System.Drawing.Point(102, 87);
 			this.hallowBox.Name = "hallowBox";
 			this.helpProvider1.SetShowHelp(this.hallowBox, true);
 			this.hallowBox.Size = new System.Drawing.Size(79, 20);
-			this.hallowBox.TabIndex = 3;
+			this.hallowBox.TabIndex = 2;
 			this.hallowBox.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
 			this.hallowBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
 			// 
@@ -150,7 +150,7 @@
 			// 
 			this.lengthPerchBox.ForeColor = System.Drawing.Color.Black;
 			this.helpProvider1.SetHelpString(this.lengthPerchBox, "Length perch has to be more 25 mm and less than 35 mm");
-			this.lengthPerchBox.Location = new System.Drawing.Point(102, 111);
+			this.lengthPerchBox.Location = new System.Drawing.Point(102, 149);
 			this.lengthPerchBox.Name = "lengthPerchBox";
 			this.helpProvider1.SetShowHelp(this.lengthPerchBox, true);
 			this.lengthPerchBox.Size = new System.Drawing.Size(79, 20);
@@ -162,11 +162,11 @@
 			// 
 			this.diameterPerchBox.ForeColor = System.Drawing.Color.Black;
 			this.helpProvider1.SetHelpString(this.diameterPerchBox, "Diameter perch has to be more 5 mm and less 10 mm");
-			this.diameterPerchBox.Location = new System.Drawing.Point(102, 140);
+			this.diameterPerchBox.Location = new System.Drawing.Point(102, 118);
 			this.diameterPerchBox.Name = "diameterPerchBox";
 			this.helpProvider1.SetShowHelp(this.diameterPerchBox, true);
 			this.diameterPerchBox.Size = new System.Drawing.Size(79, 20);
-			this.diameterPerchBox.TabIndex = 5;
+			this.diameterPerchBox.TabIndex = 3;
 			this.diameterPerchBox.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
 			this.diameterPerchBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
 			// 
@@ -186,7 +186,7 @@
 			// 
 			this.widthBox.ForeColor = System.Drawing.Color.Black;
 			this.helpProvider1.SetHelpString(this.widthBox, "Width has to be more 120 mm and less 190 mm");
-			this.widthBox.Location = new System.Drawing.Point(92, 46);
+			this.widthBox.Location = new System.Drawing.Point(92, 47);
 			this.widthBox.Name = "widthBox";
 			this.helpProvider1.SetShowHelp(this.widthBox, true);
 			this.widthBox.Size = new System.Drawing.Size(79, 20);
@@ -221,7 +221,7 @@
 			// label15
 			// 
 			this.label15.AutoSize = true;
-			this.label15.Location = new System.Drawing.Point(186, 52);
+			this.label15.Location = new System.Drawing.Point(186, 59);
 			this.label15.Name = "label15";
 			this.label15.Size = new System.Drawing.Size(112, 13);
 			this.label15.TabIndex = 23;
@@ -230,7 +230,7 @@
 			// label16
 			// 
 			this.label16.AutoSize = true;
-			this.label16.Location = new System.Drawing.Point(186, 80);
+			this.label16.Location = new System.Drawing.Point(186, 90);
 			this.label16.Name = "label16";
 			this.label16.Size = new System.Drawing.Size(141, 13);
 			this.label16.TabIndex = 24;
@@ -239,7 +239,7 @@
 			// label17
 			// 
 			this.label17.AutoSize = true;
-			this.label17.Location = new System.Drawing.Point(186, 111);
+			this.label17.Location = new System.Drawing.Point(187, 152);
 			this.label17.Name = "label17";
 			this.label17.Size = new System.Drawing.Size(103, 13);
 			this.label17.TabIndex = 25;
@@ -248,7 +248,7 @@
 			// label18
 			// 
 			this.label18.AutoSize = true;
-			this.label18.Location = new System.Drawing.Point(186, 140);
+			this.label18.Location = new System.Drawing.Point(187, 121);
 			this.label18.Name = "label18";
 			this.label18.Size = new System.Drawing.Size(97, 13);
 			this.label18.TabIndex = 26;
@@ -257,7 +257,7 @@
 			// label19
 			// 
 			this.label19.AutoSize = true;
-			this.label19.Location = new System.Drawing.Point(177, 18);
+			this.label19.Location = new System.Drawing.Point(177, 22);
 			this.label19.Name = "label19";
 			this.label19.Size = new System.Drawing.Size(115, 13);
 			this.label19.TabIndex = 27;
@@ -266,7 +266,7 @@
 			// label20
 			// 
 			this.label20.AutoSize = true;
-			this.label20.Location = new System.Drawing.Point(176, 50);
+			this.label20.Location = new System.Drawing.Point(177, 51);
 			this.label20.Name = "label20";
 			this.label20.Size = new System.Drawing.Size(115, 13);
 			this.label20.TabIndex = 28;
@@ -275,7 +275,7 @@
 			// label21
 			// 
 			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(176, 79);
+			this.label21.Location = new System.Drawing.Point(177, 79);
 			this.label21.Name = "label21";
 			this.label21.Size = new System.Drawing.Size(103, 13);
 			this.label21.TabIndex = 29;
@@ -306,7 +306,7 @@
 			this.AdditionalBox.Location = new System.Drawing.Point(10, 194);
 			this.AdditionalBox.Name = "AdditionalBox";
 			this.AdditionalBox.Size = new System.Drawing.Size(317, 106);
-			this.AdditionalBox.TabIndex = 31;
+			this.AdditionalBox.TabIndex = 5;
 			this.AdditionalBox.TabStop = false;
 			this.AdditionalBox.Text = "Parameters for rectangle ";
 			// 
@@ -322,7 +322,7 @@
 			this.housingBox.Name = "housingBox";
 			this.helpProvider1.SetShowHelp(this.housingBox, true);
 			this.housingBox.Size = new System.Drawing.Size(79, 21);
-			this.housingBox.TabIndex = 1;
+			this.housingBox.TabIndex = 0;
 			this.housingBox.SelectedIndexChanged += new System.EventHandler(this.HousingBox_SelectedIndexChanged);
 			// 
 			// label8
@@ -341,7 +341,7 @@
 			this.cleanButton.Name = "cleanButton";
 			this.helpProvider1.SetShowHelp(this.cleanButton, true);
 			this.cleanButton.Size = new System.Drawing.Size(126, 23);
-			this.cleanButton.TabIndex = 34;
+			this.cleanButton.TabIndex = 9;
 			this.cleanButton.Text = "Clean";
 			this.cleanButton.UseVisualStyleBackColor = true;
 			this.cleanButton.Click += new System.EventHandler(this.CleanButton_Click);

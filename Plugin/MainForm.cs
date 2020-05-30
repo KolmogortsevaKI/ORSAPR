@@ -13,7 +13,6 @@ namespace Plugin
         /// Переменная для валидации параметров.
         /// </summary>
         private bool _init = true;
-        //private HouseParameters houseParameters;
         public MainForm()
         {
             InitializeComponent();
@@ -129,7 +128,7 @@ namespace Plugin
         }
 
         /// <summary>
-        /// Скрытие или демонстрация дополнительных параметров для построения корпуса
+        /// Скрытие или демонстрация дополнительных параметров для построения корпуса.
         /// </summary>
         private void HousingBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -142,7 +141,9 @@ namespace Plugin
                 AdditionalBox.Visible = false;
             }
         }
-
+        /// <summary>
+        /// Проверка списка textBox на минимальные и максимальные значения.
+        /// </summary>
         private bool Check_Value(List<TextBox> TextBoxList, int i,
                         List<int> maxValuesList, List<int> minValuesList)
         {
