@@ -69,20 +69,6 @@ namespace BirdHouseLibrary
             Width = width;
             WidthFasteners = widthFasteners;
         }
-        /// <summary>
-        /// Создает экземпляр класса HouseParameters для цилиндррического корпуса.
-        /// </summary>
-        public HouseParameters(int height,
-            int hallowHeight,
-            int lengthPerch,
-            int diameterPerch
-           )
-        {
-            Height = height;
-            HallowHeight = hallowHeight;
-            LengthPerch = lengthPerch;
-            DiameterPerch = diameterPerch;
-        }
 
         /// <summary>
         /// Возвращает и задаёт высоту скворечника.
@@ -159,7 +145,7 @@ namespace BirdHouseLibrary
             }
             set
             {
-                if (SetParams(120, 190, value))
+                if (value == 0 || SetParams(120, 190, value))
                     _depth = value;
             }
         }
@@ -175,7 +161,7 @@ namespace BirdHouseLibrary
             }
             set
             {
-                if (SetParams(120, 190, value))
+                if (value == 0 || SetParams(120, 190, value))
                     _width = value;
             }
         }
@@ -191,7 +177,7 @@ namespace BirdHouseLibrary
             }
             set
             {
-                if (SetParams(30, 50, value))
+                if (value == 0 || SetParams(30, 50, value))
                     _widthFasteners = value;
             }
         }

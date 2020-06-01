@@ -77,6 +77,7 @@ namespace BirdHouseLibrary
             _doc3D = (ksDocument3D)_kompas.Document3D();
             _doc3D.Create(false, true);
             _iPart = (ksPart)_doc3D.GetPart((short)Part_Type.pTop_Part);
+            _doc3D.hideAllPlanes=true;
         }
     }
 }

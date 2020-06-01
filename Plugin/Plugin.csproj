@@ -56,10 +56,6 @@
       <HintPath>D:\СапрРазраб\Plagin\Kompas6Constants3D.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="KompasAPI7">
-      <HintPath>D:\work\SDK\Samples\CSharp\ss\Common\KompasAPI7.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

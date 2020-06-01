@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
 using BirdHouseLibrary;
 
@@ -32,7 +31,7 @@ namespace Plugin
         }
 
         /// <summary>
-        /// Обработчик, ограничивающий ввод символов в поле
+        /// Обработчик, ограничивающий ввод символов в поле.
         /// </summary>
         private void textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -46,50 +45,42 @@ namespace Plugin
         /// </summary>
         private void Build_Click(object sender, EventArgs e)
         {
-            //string ListDate = DateTime.Now.ToString();
-            //for (int i = 0; i < 50; i++)
-            //{
-            //    if (i == 1 || i == 5 || i == 10 || i == 15 || i == 20 || i == 25 || i == 30
-            //        || i == 35 || i == 40 || i == 45 || i == 50)
-            //    {
-            //        ListDate = ListDate + "....." + DateTime.Now.ToString();
-            //        MessageBox.Show(ListDate);
-            //    }
-                if (diameterPerchBox.Text == "" && (string)housingBox.SelectedItem == "Rectangle")
-                {
-                    HouseParameters houseParameters = new HouseParameters(int.Parse(heightBox.Text),
-                      int.Parse(hallowBox.Text), Convert.ToInt32(0), Convert.ToInt32(0),
-                      int.Parse(depthBox.Text), int.Parse(widthBox.Text), int.Parse(fastenersBox.Text));
+            if (diameterPerchBox.Text == "" && (string)housingBox.SelectedItem == "Rectangle")
+            {
+                HouseParameters houseParameters = new HouseParameters(int.Parse(heightBox.Text),
+                  int.Parse(hallowBox.Text), Convert.ToInt32(0), Convert.ToInt32(0),
+                  int.Parse(depthBox.Text), int.Parse(widthBox.Text), int.Parse(fastenersBox.Text));
                 kompasConnector = new KompasConnector(houseParameters);
                 HouseBuilder housebuilder = new HouseBuilder();
                 housebuilder.Build(kompasConnector.iPart, kompasConnector.kompas, houseParameters);
-                }
-                else if (diameterPerchBox.Text != "" && (string)housingBox.SelectedItem == "Rectangle")
-                {
-                    HouseParameters houseParameters = new HouseParameters(int.Parse(heightBox.Text),
-                      int.Parse(hallowBox.Text), int.Parse(lengthPerchBox.Text), int.Parse(diameterPerchBox.Text),
-                      int.Parse(depthBox.Text), int.Parse(widthBox.Text), int.Parse(fastenersBox.Text));
+            }
+            else if (diameterPerchBox.Text != "" && (string)housingBox.SelectedItem == "Rectangle")
+            {
+                HouseParameters houseParameters = new HouseParameters(int.Parse(heightBox.Text),
+                  int.Parse(hallowBox.Text), int.Parse(lengthPerchBox.Text), int.Parse(diameterPerchBox.Text),
+                  int.Parse(depthBox.Text), int.Parse(widthBox.Text), int.Parse(fastenersBox.Text));
                 kompasConnector = new KompasConnector(houseParameters);
                 HouseBuilder housebuilder = new HouseBuilder();
                 housebuilder.Build(kompasConnector.iPart, kompasConnector.kompas, houseParameters);
-                }
-                else if (diameterPerchBox.Text != "")
-                {
-                    HouseParameters houseParameters = new HouseParameters(int.Parse(heightBox.Text),
-                      int.Parse(hallowBox.Text), int.Parse(lengthPerchBox.Text), int.Parse(diameterPerchBox.Text));
+            }
+            else if (diameterPerchBox.Text != "")
+            {
+                HouseParameters houseParameters = new HouseParameters(int.Parse(heightBox.Text),
+                  int.Parse(hallowBox.Text), int.Parse(lengthPerchBox.Text), int.Parse(diameterPerchBox.Text)
+                  , Convert.ToInt32(0), Convert.ToInt32(0), Convert.ToInt32(0));
                 kompasConnector = new KompasConnector(houseParameters);
                 HouseBuilder housebuilder = new HouseBuilder();
                 housebuilder.BuildCylinder(kompasConnector.iPart, kompasConnector.kompas, houseParameters);
-                }
-                else
-                {
-                    HouseParameters houseParameters = new HouseParameters(int.Parse(heightBox.Text),
-                      int.Parse(hallowBox.Text), Convert.ToInt32(0), Convert.ToInt32(0));
+            }
+            else
+            {
+                HouseParameters houseParameters = new HouseParameters(int.Parse(heightBox.Text),
+                  int.Parse(hallowBox.Text), Convert.ToInt32(0), Convert.ToInt32(0)
+                  , Convert.ToInt32(0), Convert.ToInt32(0), Convert.ToInt32(0));
                 kompasConnector = new KompasConnector(houseParameters);
                 HouseBuilder housebuilder = new HouseBuilder();
                 housebuilder.BuildCylinder(kompasConnector.iPart, kompasConnector.kompas, houseParameters);
-                }
-            //}
+            }
         }
 
         /// <summary>
@@ -124,7 +115,6 @@ namespace Plugin
                     c.BackColor = System.Drawing.Color.LightGreen;
             }
             Build.Enabled = IsValid();
-
         }
 
         /// <summary>
